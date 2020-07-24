@@ -1,3 +1,5 @@
+## Basic React project using the GitHub Jobs API to allow search, and view jobs with JSON over HTTP.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
