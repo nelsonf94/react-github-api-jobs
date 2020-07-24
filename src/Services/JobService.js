@@ -1,7 +1,9 @@
-/** Api Service */
-import Api from './Api';
 /** rxjs Lib  */
 import {Subject} from 'rxjs';
+/** Api Service */
+import Api from './Api';
+/** Alerts Service */
+import AlertsService from './AlertsService';
 
 /** List of Jobs */
 const jobsList = new Subject();
@@ -11,7 +13,11 @@ const jobsList = new Subject();
  * @param {*} params
  */
 const searchJob = async (params) => {
-  return await Api.searchJob(params);
+  try {
+    return await Api.searchJob(params);
+  } catch (error) {
+    AlertsService.showAlert(error);
+  }
 }
 
 
@@ -19,7 +25,7 @@ const searchJob = async (params) => {
  * Job Service
  */
 const JobService = {
-  jobsList: () => jobsList.asObservable(),
+  jobsList: jobsList.asObservable(),
   searchJob: searchJob
 };
 

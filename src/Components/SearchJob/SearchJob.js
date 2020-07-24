@@ -4,8 +4,11 @@ import React from 'react';
 /** Job Service */
 import JobService from '../../Services/JobService';
 
-const subscribe_searchJob = (calback) = {
-  JobService.
+/**
+ * Subscribe to catch the search Job result
+ */
+const subscribe_searchJob = (callback) => {
+  JobService.jobsList.subscribe(callback);
 }
 
 class SearchJob extends React.Component {
@@ -18,6 +21,9 @@ class SearchJob extends React.Component {
   }
 
   componentDidMount() {
+    subscribe_searchJob((items) => {
+      this.setState({items: items});
+    });
   }
 
 
