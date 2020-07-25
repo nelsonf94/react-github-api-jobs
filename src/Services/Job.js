@@ -3,7 +3,7 @@ import {Subject} from 'rxjs';
 /** Api Service */
 import Api from './Api';
 /** Alerts Service */
-import AlertsService from './AlertsService';
+import AlertService from './Alert';
 
 /** List of Jobs */
 const jobsList = new Subject();
@@ -14,9 +14,10 @@ const jobsList = new Subject();
  */
 const searchJob = async (params) => {
   try {
-    return await Api.searchJob(params);
+    const result = await Api.searchJob(params);
+    jobsList.next(result);
   } catch (error) {
-    AlertsService.showAlert(error);
+    AlertService.showAlert(error);
   }
 }
 

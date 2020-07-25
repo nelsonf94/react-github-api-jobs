@@ -1,14 +1,15 @@
 /** React imports */
 import React from 'react';
-
-/** Libs imports */
-
-/** Components */
+/** Container Boostrarp */
+import Container from 'react-bootstrap/Container';
+/** Layout Components */
 import Aux from '../../hoc/Aux';
 import Navbar from '../Navbar/Navbar';
-import Section from '../Section/Section';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+
+/** Basic Components */
+import SearchJob from '../../Components/SearchJob/SearchJob';
 
 
 /**
@@ -19,11 +20,13 @@ const Layout = (props) => {
   return (
     <Aux>
       <Navbar></Navbar>
-      <Section>
-        <Header></Header>
-          Contendio de Aplicacion
+      <Container fluid>
+        <Header>
+          Filtros de busqueda
+        </Header>
+        <SearchJob></SearchJob>
         <Footer></Footer>
-      </Section>
+      </Container>
     </Aux>
   );
 }

@@ -2,14 +2,10 @@
 import React from 'react';
 
 /** Job Service */
-import JobService from '../../Services/JobService';
+import JobService from '../../Services/Job';
 
-/**
- * Subscribe to catch the search Job result
- */
-const subscribe_searchJob = (callback) => {
-  JobService.jobsList.subscribe(callback);
-}
+/** JobList Container Component */
+import JobList from './JobList';
 
 class SearchJob extends React.Component {
 
@@ -21,13 +17,26 @@ class SearchJob extends React.Component {
   }
 
   componentDidMount() {
-    subscribe_searchJob((items) => {
-      this.setState({items: items});
-    });
+    this.subscribe_searchJob();
   }
 
+  render() {
+    const {items} = this.state;
 
-  render()
+    return (
+      <JobList items={items}></JobList>
+    );
+  }
+
+  /**
+   * Subscribe to Job Service
+   */
+  subscribe_searchJob() {
+    JobService.jobsList.subscribe(items => {
+      this.setState({items: items});
+      console.log(items);
+    });
+  }
 }
 
 export default SearchJob;

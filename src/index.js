@@ -4,12 +4,17 @@ import App from './Root/App';
 import * as serviceWorker from './serviceWorker';
 import './index.scss';
 
+/** Configuration Service */
+import ConfigurationService from './Services/Configuration';
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+ConfigurationService.init();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

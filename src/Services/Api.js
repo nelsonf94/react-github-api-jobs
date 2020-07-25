@@ -6,9 +6,9 @@ const GITHUB_API = 'https://jobs.github.com/positions.json?markdown=true';
 /**
  * Execute the fetch action
  */
-const get = (urlParameters) => {
+const get = async (urlParameters) => {
   try {
-    const response = await fetch(`${GITHUB_API}&${urlParameters}`);
+    const response = await fetch(`${GITHUB_API}${urlParameters}`);
     const data = response.json();
     return data;
   } catch (error) {
@@ -22,8 +22,41 @@ const get = (urlParameters) => {
  * Create the URL parameters to Search for jobs
  */
 const searchJob_UrlParameters = (params) => {
-  const urlParameters = '';
-  return urlParameters;
+  try {
+    let urlParameters = '';
+    if (params.lat || params.long) {
+
+      if (!params.lat || !params.long) {
+        throw new Error('Lat and Long parameters are required');
+      }
+
+      if (params.location) {
+        delete params.location;
+      }
+
+      urlParameters += `&lat=${params.lat}&long=${params.long}`;
+    }
+
+    if (params.page) {
+      urlParameters += `&page=${params.page}`;
+    }
+
+    if (params.type) {
+      urlParameters += `&full_time=${(params.type === 'full') ? true : false}`;
+    }
+
+    if (params.description) {
+      urlParameters += `&page=${params.description}`;
+    }
+
+    if (params.location) {
+      urlParameters += `&page=${params.location}`;
+    }
+
+    return urlParameters;
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -45,7 +78,7 @@ const searchJob = async (params) => {
     const result = await get(urlParameters);
     return result;
   } catch (error) {
-    throw {error: 'danger', message: 'Algun mensaje'};
+    throw error;
   }
 }
 
@@ -59,7 +92,7 @@ const viewJob = async (id) => {
     const result = await get(urlParameters);
     return result;
   } catch (error) {
-    throw {error: 'danger', message: 'Algun mensaje'};
+    throw error;
   }
 }
 

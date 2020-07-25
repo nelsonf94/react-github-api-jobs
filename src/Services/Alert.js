@@ -15,8 +15,8 @@ const showAlert = (alert) => {
 /**
  * Alert Service
  */
-const AlertsService = {
+const AlertService = {
   showAlert: showAlert
 }
 
-export default AlertsService;
+export default AlertService;
