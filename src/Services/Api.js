@@ -27,7 +27,7 @@ const searchJob_UrlParameters = (params) => {
     if (params.lat || params.long) {
 
       if (!params.lat || !params.long) {
-        throw new Error('Lat and Long parameters are required');
+        throw 'Error creando parametros';
       }
 
       if (params.location) {
@@ -46,11 +46,11 @@ const searchJob_UrlParameters = (params) => {
     }
 
     if (params.description) {
-      urlParameters += `&page=${params.description}`;
+      urlParameters += `&description=${params.description}`;
     }
 
     if (params.location) {
-      urlParameters += `&page=${params.location}`;
+      urlParameters += `&location=${params.location}`;
     }
 
     return urlParameters;

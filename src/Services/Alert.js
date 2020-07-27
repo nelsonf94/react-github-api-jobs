@@ -2,7 +2,7 @@
  * Show the new Alert on Screen
  */
 const show = (alert) => {
-  alert(alert.message);
+  console.log(alert.message);
 }
 
 /**

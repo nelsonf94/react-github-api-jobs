@@ -1,53 +1,50 @@
 /** React imports */
 import React from 'react';
-/** Aux Component */
-import Aux from '../../hoc/Aux';
-/** Boostrap */
-import {Navbar, Nav, Button, Collapse, Container, Row} from 'react-bootstrap';
-
 
 /**
  * Application Navbar
  */
 const NavBarComponent = (props) => {
-  const [open, setOpen] = React.useState(false);
 
   return (
-    <Aux>
-      <Collapse in={open} className="bg-dark collapse" id="more-information">
-        <Container fluid>
-          <Row>
+    <header>
+      <div className="collapse bg-dark" id="navbarHeader">
+        <div className="container">
+          <div className="row">
             <div className="col-sm-8 col-md-7 py-4">
-              <h4 className="text-white">About</h4>
-              <p className="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+              <h4 className="text-white">About Me</h4>
+              <p className="text-muted">
+                Hi, my name is Nelson Fernández, i'm a System Engineer. I am passionate about technology.
+              </p>
+              <p className="text-muted">
+                Many people, are searching his next job.
+                To be able to satisfy of help this desire, I present this project.
+                This project was Created using <strong>React framework</strong> and the <strong>Github Jobs API </strong>
+                wich allows us to search, and view jobs with JSON over HTTP.
+              </p>
             </div>
             <div className="col-sm-4 offset-md-1 py-4">
               <h4 className="text-white">Contact</h4>
               <ul className="list-unstyled">
-                <li><a href="#" className="text-white">Follow on Twitter</a></li>
-                <li><a href="#" className="text-white">Like on Facebook</a></li>
-                <li><a href="#" className="text-white">Email me</a></li>
+                <li><a href="https://www.instagram.com/nelsonj94/" className="text-white">Follow on Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/nelsonf94/" className="text-white">Follow on LinkedIn</a></li>
               </ul>
             </div>
-          </Row>
-        </Container>
-      </Collapse>
-      <Navbar bg="dark" variant="dark" sticky="top">
-        <Navbar.Brand href="#home">Job Search</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="#full-time">Full Time</Nav.Link>
-          <Nav.Link href="#near-you">Near You</Nav.Link>
-        </Nav>
-        <Nav>
-          <Button variant="outline-light" className="bg-dark collapsed"
-            onClick={() => setOpen(!open)}
-            aria-controls="more-information"
-            aria-expanded={open}>
+          </div>
+        </div>
+      </div>
+      <div className="navbar navbar-dark bg-dark box-shadow">
+        <div className="container d-flex justify-content-between">
+          <a href="#" className="navbar-brand d-flex align-items-center">
+            <img src="https://img.icons8.com/ios/50/000000/search-database.png" />
+            <strong>Job Search.com</strong>
+          </a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
-          </Button>
-        </Nav>
-      </Navbar>
-    </Aux>
+          </button>
+        </div>
+      </div>
+    </header>
   )
 }
 
