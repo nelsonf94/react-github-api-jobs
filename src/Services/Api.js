@@ -1,5 +1,5 @@
 /** Url del api GITHUB_API */
-const GITHUB_API = 'https://jobs.github.com/positions.json?markdown=true';
+const GITHUB_API = 'https://jobs.github.com/positions.json?markdown=false';
 
 /*****************************************************************/
 
@@ -24,21 +24,11 @@ const get = async (urlParameters) => {
 const searchJob_UrlParameters = (params) => {
   try {
     let urlParameters = '';
-    if (params.lat || params.long) {
-
-      if (!params.lat || !params.long) {
-        throw 'Error creando parametros';
-      }
-
-      if (params.location) {
-        delete params.location;
-      }
-
-      urlParameters += `&lat=${params.lat}&long=${params.long}`;
-    }
 
     if (params.page) {
       urlParameters += `&page=${params.page}`;
+    } else {
+      urlParameters += '&page=1';
     }
 
     if (params.type) {
@@ -59,13 +49,6 @@ const searchJob_UrlParameters = (params) => {
   }
 }
 
-/**
- * Create the URL parameters to view some job
- */
-const viewJob_urlParameters = (id) => {
-  const urlParameters = '';
-  return urlParameters;
-}
 
 /*****************************************************************/
 
@@ -82,28 +65,13 @@ const searchJob = async (params) => {
   }
 }
 
-/**
- * View Information about Some Job
- * @param {*} jobId
- */
-const viewJob = async (id) => {
-  try {
-    const urlParameters = viewJob_urlParameters(id);
-    const result = await get(urlParameters);
-    return result;
-  } catch (error) {
-    throw error;
-  }
-}
-
 /*****************************************************************/
 
 /**
  * Api Service
  */
 const Api = {
-  searchJob: searchJob,
-  viewJob: viewJob
+  searchJob: searchJob
 }
 
 

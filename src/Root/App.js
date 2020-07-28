@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {isLoading: false};
   }
 
-  componentWillMount() {
+  componentDidMount() {
     JobService.isLoading.subscribe((isLoading) => {
       this.setState({isLoading: isLoading});
     });

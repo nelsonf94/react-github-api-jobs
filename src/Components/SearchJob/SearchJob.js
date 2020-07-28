@@ -16,7 +16,8 @@ class SearchJob extends React.Component {
     super(props);
     this.state = {
       items: [],
-      pageOfItems: []
+      pageOfItems: [],
+      newSearch: false
     };
   }
 
@@ -29,12 +30,20 @@ class SearchJob extends React.Component {
    */
   subscribe_searchJob() {
     JobService.jobsList.subscribe((newItems) => {
-      const {items} = this.state;
-      if (newItems.length) {
-        // update state with new items
+      if (newItems === '-1') {
         this.setState({
-          items: [...items, ...newItems],
+          items: [],
+          newSearch: true
         });
+      } else {
+        const {items} = this.state;
+        if (newItems.length) {
+          // update state with new items
+          this.setState({
+            items: [...items, ...newItems],
+            newSearch: false
+          });
+        }
       }
     });
   }
@@ -49,14 +58,18 @@ class SearchJob extends React.Component {
   }
 
   render() {
-    const {pageOfItems} = this.state;
+    const {pageOfItems, newSearch, items} = this.state;
+
+    if(newSearch){
+      return null;
+    }
 
     return (
-      <div className="album py-5 bg-light">
+      <div className="py-5 bg-light">
         <div className="container">
           {pageOfItems.length ? <JobList items={pageOfItems} /> : <Emply />}
           <Pagination
-            items={this.state.items}
+            items={items}
             onChangePage={(pageOfItems) => this.onChangePage(pageOfItems)}
             nextPageCurrentSearch={() => JobService.nextPageCurrentSearch()} />
         </div>

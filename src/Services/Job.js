@@ -8,7 +8,6 @@ const jobsList = new Subject();
 /** Loader Spinner */
 const isLoading = new Subject();
 
-
 /** Current Filters or params to search jobs */
 let currentSearchParams = null;
 
@@ -19,13 +18,15 @@ let currentSearchParams = null;
 const searchJob = async (params) => {
   try {
     isLoading.next(true);
-    currentSearchParams = params;
+    jobsList.next('-1');
+    params.page = 1;
     const result = await Api.searchJob(params);
     jobsList.next(result);
   } catch (error) {
     console.log(error);
   } finally {
     isLoading.next(false);
+    currentSearchParams = params;
   }
 }
 

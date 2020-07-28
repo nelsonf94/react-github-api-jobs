@@ -1,7 +1,7 @@
 /** React imports */
 import React from 'react';
 /** Job Component */
-import Job from './Job';
+import Job from './Job/Job';
 
 const JobList = (props) => {
   const {items} = props;
